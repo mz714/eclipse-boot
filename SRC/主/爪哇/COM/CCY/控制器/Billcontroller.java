@@ -16,7 +16,7 @@ import com.ccy.service.BillService;
 @Controller
 @RequestMapping("/bill")
 public class Billcontroller {
-	//aa
+	//aaaaa
 	@Resource
 	private BillService billService;
 	
