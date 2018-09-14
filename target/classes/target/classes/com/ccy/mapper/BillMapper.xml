@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper    
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ccy.mapper.BillMapper">
+  <select id="bills" resultType="com.ccy.po.Bill" parameterType="com.ccy.po.Bill">
+    select id_ as id,
+      title_ as title
+      from bill_
+  </select>
+</mapper>

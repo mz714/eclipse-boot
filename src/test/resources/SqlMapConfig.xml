@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<settings>
+		<!-- 开启延迟加载 ，默认值为true-->
+		<setting name="lazyLoadingEnabled" value="true"/>
+		<!-- 设置积极的懒加载,默认是true -->
+		<setting name="aggressiveLazyLoading" value="false"/>
+		<!-- 二级缓存的总开关 -->
+		<setting name="cacheEnabled" value="true"/>
+	</settings>
+
+
+	<typeAliases>
+		<package name="com.ccy.po" />
+	</typeAliases>
+
+
+	
+	<mappers>
+		<package name="com.ccy.mapper" />
+	</mappers>
+	
+		
+	<!-- sqlSessionFactory：工厂类 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="classpath:SqlMapConfig.xml"></property>
+		
+		<property name="typeAliasesPackage" value="com.ccy.po"></property>
+		
+		<!-- 
+			* PageInterceptor：分页插件
+				* 通过mybatis拦截器的组件，给普通的sql语句,增加分页的功能
+		-->
+		<property name="plugins">
+			<array>
+				<bean class="com.github.pagehelper.PageInterceptor">
+					<property name="properties">
+						<value>
+							<!-- 可以省略，能自动识别当前连接的数据库类型，生成相应的分页语句 -->
+							helperDialect=mysql
+						</value>
+					</property>
+				</bean>
+			</array>
+		</property>
+		
+	</bean>
+	
+	<!-- mapper代理开发方式之批量mapper配置，生成basePackage包中的所得Mapper接口的代理对象-->
+	<!-- bean的名字默认为mapper接口类名的首字母小写 -->
+	
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.ccy.mapper"></property>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+	</bean>	
+	
+	<!-- 注解搜索路径 -->
+	<context:component-scan base-package="com.ccy"></context:component-scan>
+	
+	<!-- 声明事务 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+</configuration>

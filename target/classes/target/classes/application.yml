@@ -1,0 +1,37 @@
+mybatis:
+#  configuration:
+#  ###当查询数据为空时字段返回为null，不加这个查询数据为空时，字段将被隐藏
+#    call-setters-on-nulls: true
+#    ##mybatis默认是属性名和数据库字段名一一对应的，即 
+#    ##数据库表列：user_name 
+#    ##实体类属性：user_name
+#    ##但是java中一般使用驼峰命名 
+#    ##数据库表列：user_name 
+#    ##实体类属性：userName
+#    ##在Springboot中，可以通过设置map-underscore-to-camel-case属性为true来开启驼峰功能。
+#    map-underscore-to-camel-case: true
+  type-aliases-package: com.ccy
+
+  
+ 
+  
+
+
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/bill-manager?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: accp
+  
+  
+    
+    
+server:
+   port: 8080
+  
+
+   
+   
+
+
