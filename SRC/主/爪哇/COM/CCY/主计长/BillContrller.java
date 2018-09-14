@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ccy.po.Bill;
 import com.ccy.service.BillService;
-
+//aaaa
 @Controller
 @RequestMapping("/list")
 public class BillContrller {
